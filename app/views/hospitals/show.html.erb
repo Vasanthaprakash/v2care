@@ -1,0 +1,54 @@
+<div class="container mt-4">
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+
+      <h2 class="card-title mb-3"><%= @hospital.name %></h2>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-md-6">
+          <p><strong>Address:</strong><br>
+            <%= @hospital.address %>
+          </p>
+
+          <p><strong>City:</strong><br>
+            <%= @hospital.city %>
+          </p>
+
+          <p><strong>Hospital Type:</strong><br>
+            <%= @hospital.hospital_type %>
+          </p>
+        </div>
+
+        <div class="col-md-6">
+          <p><strong>Specialization:</strong><br>
+            <%= @hospital.specialization %>
+          </p>
+
+          <p><strong>Opening Time:</strong><br>
+            <%= @hospital.opening_time.strftime("%I:%M %p") %>
+          </p>
+
+          <p><strong>Closing Time:</strong><br>
+            <%= @hospital.closing_time.strftime("%I:%M %p") %>
+          </p>
+
+          <p><strong>Slots Per Day:</strong><br>
+            <%= @hospital.slots %>
+          </p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="d-flex justify-content-between">
+        <%= link_to "Edit", edit_hospital_path(@hospital), class: "btn btn-primary" %>
+        <%= link_to "Back", hospitals_path, class: "btn btn-secondary" %>
+      </div>
+
+    </div>
+  </div>
+
+</div>

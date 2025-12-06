@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  address: MyText
+  hospital_type: MyString
+  specialization: MyString
+  opening_time: 2025-12-06 19:33:32
+  closing_time: 2025-12-06 19:33:32
+  slots: 1
+  user: one
+
+two:
+  name: MyString
+  address: MyText
+  hospital_type: MyString
+  specialization: MyString
+  opening_time: 2025-12-06 19:33:32
+  closing_time: 2025-12-06 19:33:32
+  slots: 1
+  user: two

@@ -1,0 +1,59 @@
+<%= form_with model: @hospital, local: true do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, class: "form-label" %>
+    <%= f.text_field :name, class: "form-control", placeholder: "Enter hospital name" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :address, class: "form-label" %>
+    <%= f.text_area :address, class: "form-control", rows: 3, placeholder: "Enter hospital address" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :city, class: "form-label" %>
+    <%= f.select :city, [
+      "Chennai", "Coimbatore", "Madurai", "Trichy", "Salem",
+      "Tirunelveli", "Erode", "Vellore", "Thanjavur",
+      "Kanchipuram", "Tiruppur", "Thoothukudi", "Nagercoil",
+      "Cuddalore", "Nagapattinam", "Ramanathapuram", "Sivagangai",
+      "Villupuram", "Dindigul", "Karur"
+    ], { prompt: "Select City" }, class: "form-control" %>
+  </div>
+
+
+  <div class="mb-3">
+    <%= f.label :hospital_type, class: "form-label" %>
+    <%= f.select :hospital_type, ["Clinic", "Multi-Speciality", "General Hospital"], { prompt: "Select Type" }, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :specialization, class: "form-label" %>
+    <%= f.text_field :specialization, class: "form-control", placeholder: "e.g. Cardiology, ENT" %>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-md-6">
+      <%= f.label :opening_time, class: "form-label" %>
+      <%= f.time_field :opening_time, class: "form-control" %>
+    </div>
+    <div class="col-md-6">
+      <%= f.label :closing_time, class: "form-label" %>
+      <%= f.time_field :closing_time, class: "form-control" %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :slots, "Slots per Day", class: "form-label" %>
+    <%= f.number_field :slots, class: "form-control", min: 1 %>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <%= f.submit class: "btn btn-success" do %>
+      <i class="fas fa-plus me-1"></i> Save Hospital
+    <% end %>
+
+    <%= link_to hospitals_path, class: "btn btn-secondary" do %>
+      <i class="fas fa-arrow-left me-1"></i> Back
+    <% end %>
+  </div>
+<% end %>

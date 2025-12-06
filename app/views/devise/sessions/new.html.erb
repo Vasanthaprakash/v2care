@@ -1,0 +1,55 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+
+      <div class="card shadow-lg border-0">
+        <div class="card-header gradient-bg text-white text-center">
+          <h4 class="mb-0 text-light">
+            <i class="fas fa-user-circle me-2"></i> Log In
+          </h4>
+        </div>
+
+        <div class="card-body">
+
+          <%= render 'devise/shared/error_messages', resource: resource %>
+
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                <%= f.email_field :email, class: "form-control", autofocus: true, placeholder: "Enter email" %>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                <%= f.password_field :password, class: "form-control", placeholder: "Enter password" %>
+              </div>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="form-check mb-3">
+                <%= f.check_box :remember_me, class: "form-check-input" %>
+                <%= f.label :remember_me, class: "form-check-label" %>
+              </div>
+            <% end %>
+
+            <div class="d-grid">
+              <%= f.submit "Log in", class: "btn btn-primary" %>
+            </div>
+          <% end %>
+
+          <div class="text-center mt-3">
+            <%= render "devise/shared/links" %>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
