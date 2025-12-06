@@ -11,6 +11,7 @@
 !/.env*.erb
 
 # Ignore all default key files.
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
