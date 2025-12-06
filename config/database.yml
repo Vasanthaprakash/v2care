@@ -27,5 +27,5 @@ test:
 
 production:
   <<: *default
-  database: v2care_production
+  url: <%= ENV['DATABASE_URL'] %>
 
