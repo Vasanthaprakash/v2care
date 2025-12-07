@@ -1,2 +1,38 @@
-<h1>Appointments#index</h1>
-<p>Find me in app/views/appointments/index.html.erb</p>
+<div class="container mt-4">
+  <h3 class="mb-4">My Appointments</h3>
+
+  <% if @appointments.any? %>
+    <div class="row">
+      <% @appointments.each do |a| %>
+        <div class="col-md-6 mb-3">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h5 class="card-title">
+                <strong><%= a.hospital.name %></strong>
+              </h5>
+
+              <p class="mb-1"><strong>City:</strong> <%= a.hospital.city %></p>
+              <p class="mb-1"><strong>Address:</strong> <%= a.hospital.address %></p>
+              <p class="mb-1">
+                <strong>Time:</strong>
+                <%= a.appointment_time.strftime("%B %d, %Y - %I:%M %p") %>
+              </p>
+
+              <p class="mb-1"><strong>Status:</strong>
+                <span class="badge bg-info text-dark"><%= a.status || "Booked" %></span>
+              </p>
+
+              <% if a.notes.present? %>
+                <p><strong>Notes:</strong> <%= a.notes %></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  <% else %>
+    <p class="text-muted">You have no appointments yet.</p>
+  <% end %>
+
+</div>

@@ -1,2 +1,152 @@
-<h1>Appointments#new</h1>
-<p>Find me in app/views/appointments/new.html.erb</p>
+<h2 class="title">Book Appointment at <%= @hospital.name %></h2>
+
+<!-- Date Selection -->
+<div class="date-section">
+  <%= form_with url: new_hospital_appointment_path(@hospital), method: :get, local: true do %>
+    <label class="label">Select Date:</label>
+    <%= date_field_tag :date,
+                       @selected_date,
+                       min: Date.current,
+                       class: "date-input",
+      onchange: "this.form.submit();" %>
+  <% end %>
+</div>
+
+<hr class="divider">
+
+<%= form_with model: @appointment, url: hospital_appointments_path(@hospital), local: true do |f| %>
+
+  <%= hidden_field_tag "appointment[appointment_date]", @selected_date %>
+
+  <h3 class="subtitle">Available Slots</h3>
+
+  <% if @slots.empty? %>
+    <p class="no-slots">No slots available for this hospital.</p>
+  <% else %>
+    <div class="slot-grid">
+      <% @slots.each do |slot| %>
+        <% is_booked = @booked_slots.include?(slot) %>
+
+        <label class="slot <%= 'booked' if is_booked %>">
+          <%= radio_button_tag "appointment[slot_time]", slot, false, disabled: is_booked %>
+          <span class="slot-text"><%= slot %></span>
+        </label>
+      <% end %>
+    </div>
+  <% end %>
+
+  <hr class="divider">
+
+  <div class="notes-section">
+    <label class="label">Notes (optional):</label>
+    <%= f.text_area :notes, class: "notes-input" %>
+  </div>
+
+  <%= f.submit "Book Appointment", class: "btn-primary" %>
+<% end %>
+
+<style>
+    /* Title */
+    .title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    /* Divider */
+    .divider {
+        margin: 20px 0;
+    }
+
+    /* Date Section */
+    .date-section {
+        margin-bottom: 20px;
+    }
+
+    .label {
+        font-weight: 600;
+        margin-right: 10px;
+    }
+
+    .date-input {
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #aaa;
+        font-size: 14px;
+    }
+
+    /* Slots Grid */
+    .slot-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+
+    .slot {
+        border: 1px solid #666;
+        padding: 12px;
+        border-radius: 8px;
+        text-align: center;
+        cursor: pointer;
+        background: #f8f8f8;
+        transition: .2s;
+    }
+
+    .slot:hover {
+        background: #e9e9e9;
+    }
+
+    .slot.booked {
+        background: #f7b5b5;
+        border-color: #d67a7a;
+        color: #555;
+        cursor: not-allowed;
+    }
+
+    .slot.booked:hover {
+        background: #f7b5b5;
+    }
+
+    .slot-text {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    /* No Slots */
+    .no-slots {
+        color: #d9534f;
+        font-weight: 600;
+    }
+
+    /* Notes Section */
+    .notes-section {
+        margin-top: 20px;
+    }
+
+    .notes-input {
+        width: 100%;
+        height: 80px;
+        border: 1px solid #aaa;
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    /* Primary Button */
+    .btn-primary {
+        padding: 12px 25px;
+        background: #1e88e5;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+
+    .btn-primary:hover {
+        background: #1669bb;
+    }
+</style>

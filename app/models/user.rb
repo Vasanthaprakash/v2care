@@ -8,6 +8,8 @@ class User < ApplicationRecord
   has_one :doctor
   has_one :patient
   has_many :hospitals, dependent: :destroy
+  has_many :appointments
+
 
 
   after_initialize :set_default_role, if: :new_record?

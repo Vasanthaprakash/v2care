@@ -25,7 +25,7 @@ class Users::SessionsController < Devise::SessionsController
       if user.role == "admin"
         redirect_to hospitals_path and return
       else
-        redirect_to new_appointment_path and return
+        redirect_to appointments_path and return
       end
 
     else

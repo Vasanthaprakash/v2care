@@ -1,10 +1,10 @@
 class HospitalsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show, :index]
   # before_action :ensure_doctor!
   before_action :set_hospital, only: [:edit, :update, :destroy, :show]
 
   def index
-    @hospitals = current_user.hospitals
+    @hospitals = Hospital.all
   end
 
   def new
@@ -42,7 +42,7 @@ class HospitalsController < ApplicationController
   private
 
   def set_hospital
-    @hospital = current_user.hospitals.find(params[:id])
+    @hospital = Hospital.find(params[:id])
   end
 
   def hospital_params
