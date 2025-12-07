@@ -1,6 +1,6 @@
 class HospitalsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_doctor!
+  # before_action :ensure_doctor!
   before_action :set_hospital, only: [:edit, :update, :destroy, :show]
 
   def index
