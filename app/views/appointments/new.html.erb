@@ -1,49 +1,51 @@
-<h2 class="title">Book Appointment at <%= @hospital.name %></h2>
+<div class="container-lg py-4">
+  <h2 class="title">Book Appointment at <%= @hospital.name %></h2>
 
-<!-- Date Selection -->
-<div class="date-section">
-  <%= form_with url: new_hospital_appointment_path(@hospital), method: :get, local: true do %>
-    <label class="label">Select Date:</label>
-    <%= date_field_tag :date,
-                       @selected_date,
-                       min: Date.current,
-                       class: "date-input",
-      onchange: "this.form.submit();" %>
-  <% end %>
-</div>
-
-<hr class="divider">
-
-<%= form_with model: @appointment, url: hospital_appointments_path(@hospital), local: true do |f| %>
-
-  <%= hidden_field_tag "appointment[appointment_date]", @selected_date %>
-
-  <h3 class="subtitle">Available Slots</h3>
-
-  <% if @slots.empty? %>
-    <p class="no-slots">No slots available for this hospital.</p>
-  <% else %>
-    <div class="slot-grid">
-      <% @slots.each do |slot| %>
-        <% is_booked = @booked_slots.include?(slot) %>
-
-        <label class="slot <%= 'booked' if is_booked %>">
-          <%= radio_button_tag "appointment[slot_time]", slot, false, disabled: is_booked %>
-          <span class="slot-text"><%= slot %></span>
-        </label>
-      <% end %>
-    </div>
-  <% end %>
+  <!-- Date Selection -->
+  <div class="date-section">
+    <%= form_with url: new_hospital_appointment_path(@hospital), method: :get, local: true do %>
+      <label class="label">Select Date:</label>
+      <%= date_field_tag :date,
+                         @selected_date,
+                         min: Date.current,
+                         class: "date-input",
+        onchange: "this.form.submit();" %>
+    <% end %>
+  </div>
 
   <hr class="divider">
 
-  <div class="notes-section">
-    <label class="label">Notes (optional):</label>
-    <%= f.text_area :notes, class: "notes-input" %>
-  </div>
+  <%= form_with model: @appointment, url: hospital_appointments_path(@hospital), local: true do |f| %>
 
-  <%= f.submit "Book Appointment", class: "btn-primary" %>
-<% end %>
+    <%= hidden_field_tag "appointment[appointment_date]", @selected_date %>
+
+    <h3 class="subtitle">Available Slots</h3>
+
+    <% if @slots.empty? %>
+      <p class="no-slots">No slots available for this hospital.</p>
+    <% else %>
+      <div class="slot-grid">
+        <% @slots.each do |slot| %>
+          <% is_booked = @booked_slots.include?(slot) %>
+
+          <label class="slot <%= 'booked' if is_booked %>">
+            <%= radio_button_tag "appointment[slot_time]", slot, false, disabled: is_booked %>
+            <span class="slot-text"><%= slot %></span>
+          </label>
+        <% end %>
+      </div>
+    <% end %>
+
+    <hr class="divider">
+
+    <div class="notes-section">
+      <label class="label">Notes (optional):</label>
+      <%= f.text_area :notes, class: "notes-input" %>
+    </div>
+
+    <%= f.submit "Book Appointment", class: "btn-primary" %>
+  <% end %>
+</div>
 
 <style>
     /* Title */
@@ -78,7 +80,7 @@
     /* Slots Grid */
     .slot-grid {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(8, 1fr);
         gap: 12px;
         margin-bottom: 15px;
     }
@@ -89,8 +91,9 @@
         border-radius: 8px;
         text-align: center;
         cursor: pointer;
-        background: #f8f8f8;
+        background: linear-gradient(90deg, rgba(45, 18, 199, 0.16) 0%, #ccffff 100%) 0% 0% no-repeat padding-box;;;
         transition: .2s;
+        color: black;
     }
 
     .slot:hover {
