@@ -81,7 +81,7 @@
 
                   <% if signed_in? %>
                     <li class="has-sub">
-                      <a><i class="fa fa-user"></i> <%= current_user.email.split('@').first.titleize %></a>
+                      <a href=""><i class="fa fa-user"></i> <%= current_user.email.split('@').first.titleize %></a>
                       <ul>
                         <li>
                           <%= link_to "Logout", destroy_user_session_path, method: :delete, data: { turbo_method: :delete }, class: "nav-link" %>
@@ -92,10 +92,10 @@
                   <% else %>
                     <li class="has-sub">
                       <a href="<%= new_user_session_path %>"><i class="fa fa-user"></i> Log In</a>
-                    <ul>
-                      <li><a href="<%= new_user_registration_path %>"><i class="fa fa-user-plus"></i> Register</a></li>
-<!--                      <li><a href="blog-details.html">Blog Details</a></li>-->
-                    </ul>
+                      <ul>
+                        <li><a href="<%= new_user_registration_path %>"><i class="fa fa-user-plus"></i> Register</a></li>
+  <!--                      <li><a href="blog-details.html">Blog Details</a></li>-->
+                      </ul>
                     </li>
                   <% end %>
                 </ul>
