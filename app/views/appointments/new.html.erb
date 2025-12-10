@@ -24,14 +24,16 @@
     <% if @slots.empty? %>
       <p class="no-slots">No slots available for this hospital.</p>
     <% else %>
-      <div class="slot-grid">
+      <div class="row justify-content-between">
         <% @slots.each do |slot| %>
           <% is_booked = @booked_slots.include?(slot) %>
 
-          <label class="slot <%= 'booked' if is_booked %>">
-            <%= radio_button_tag "appointment[slot_time]", slot, false, disabled: is_booked %>
-            <span class="slot-text"><%= slot %></span>
-          </label>
+          <div class="col-lg-2 col-md-2 col-sm-3 col-4">
+              <label class="slot <%= 'booked' if is_booked %>">
+                <%= radio_button_tag "appointment[slot_time]", slot, false, disabled: is_booked %>
+                <span class="slot-text"><%= slot %></span>
+              </label>
+          </div>
         <% end %>
       </div>
     <% end %>
@@ -94,6 +96,8 @@
         background: linear-gradient(90deg, rgba(45, 18, 199, 0.16) 0%, #ccffff 100%) 0% 0% no-repeat padding-box;;;
         transition: .2s;
         color: black;
+        min-width: 90px;
+        max-width: 150px;
     }
 
     .slot:hover {
